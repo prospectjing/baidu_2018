@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>day16</title>
+	<style>
+	    *{
+	    	margin:0;
+	    	padding: 0;
+	    }
+		#player {
+
+			width: 100px;
+			height: 30px;
+      		background: skyblue;
+            border-radius: 10px;
+            color:white;
+
+		}
+	</style>
+</head>
+<body>
+	<!-- 改变按钮上的文字 -->
+	<button id = "player">玩家1：小明</button>
+
+    <br/>
+    <input id="first-number" type="number" value="0" placeholder="第一个数字">
+    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+   
+	<script>
+		// 完成的功能：点击按钮弹出输入框，输入玩家名字后显示在按钮上
+
+	    //获取按钮
+	    var btn = document.querySelector("#player");
+	    //添加监听事件
+	    btn.addEventListener("click",setName,false);
+	    function setName(){
+	    	//获取新输入的名字
+	    	var newName = prompt("请输入新名字");
+            //将名字在按钮上显示出来
+            var newName1 = "玩家1："+ newName;
+            // this.innerText = newName1;
+            // this.innerHTML = newName1;
+           this.textContent = newName1;
+	    }
+	    //编写回调函数
+
+        var add = document.getElementById('add-btn');
+        var minus = document.getElementById('minus-btn');
+        var times = document.getElementById('times-btn');
+        var divide = document.getElementById('divide-btn');
+        var firstnum = document.getElementById('first-number');
+        var secondnum = document.getElementById('second-number');
+	    var  ptext = document.getElementById('result'); 
+
+
+	    add.addEventListener("click",function(){
+              ptext.innerText =  parseInt(firstnum.value) + parseInt(secondnum.value);
+	    },false);
+	    minus.addEventListener('click',function(){
+	    	ptext.innerText =  parseInt(firstnum.value) - parseInt(secondnum.value);
+	    },false);
+	    times.addEventListener('click',function(){
+	    	ptext.innerText =  parseInt(firstnum.value) * parseInt(secondnum.value);
+	    },false);
+	    divide.addEventListener('click',function(){
+	    	ptext.innerText =  parseInt(firstnum.value) / parseInt(secondnum.value);
+	    },false);
+
+
+	</script>
+</body>
+</html>
