@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>        
+    <input id="first-number" type="number" value="0" placeholder="第一个数字">
+    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+    <script>
+          var add = document.getElementById('add-btn');
+        var minus = document.getElementById('minus-btn');
+        var times = document.getElementById('times-btn');
+        var divide = document.getElementById('divide-btn');
+        var firstnum = document.getElementById('first-number');
+        var secondnum = document.getElementById('second-number');
+        var  ptext = document.getElementById('result'); 
+       
+         // console.log(typeof firstnum.value);
+         
+        add.addEventListener("click",function(){
+            if(isNaN(parseInt(firstnum.value)) && isNaN(parseInt(secondnum.value))){
+            alert("类型错误");
+         }else{
+           ptext.innerText =  parseInt(firstnum.value) + parseInt(secondnum.value);
+         }
+
+              
+        },false);
+        minus.addEventListener('click',function(){
+            ptext.innerText =  parseInt(firstnum.value) - parseInt(secondnum.value);
+        },false);
+        times.addEventListener('click',function(){
+            ptext.innerText =  parseInt(firstnum.value) * parseInt(secondnum.value);
+        },false);
+        divide.addEventListener('click',function(){
+            if(!parseInt(secondnum) === 0){
+             ptext.innerText =  parseInt(firstnum.value) / parseInt(secondnum.value);
+            }else{
+                alert("error");
+            }
+            
+        },false);
+    </script>
+</body>
+</html>
