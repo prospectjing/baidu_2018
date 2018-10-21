@@ -6,6 +6,7 @@
 </head>
 <body>        
     <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+    <input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
     <button id="trans-btn">转化为二进制</button>
     <p id="result">运算结果</p>
     <script>
@@ -35,10 +36,24 @@ function dec2bin(decNumber) {
  var bt = document.getElementById('trans-btn');
  var pp = document.getElementById('result');
  var input = document.getElementById('dec-number');
+ var erinput  = document.getElementById('bin-bit');
+
  bt.addEventListener('click',function(){
       var num = parseInt(input.value);
       var array = dec2bin(num);
-     pp.innerText = "计算结果为：" + array.join("");
+      var resultlength = array.length;//结果长度
+      var zerolength = (parseInt(erinput.value) - array.length);//补零长度 
+      var arry1 = [];
+      for(var j = 0;j < zerolength;j++){
+           arry1[j] = "0";
+      }
+       if(array.length >= parseInt(erinput.value)){
+       	pp.innerText = "计算结果为：" + array.join("");
+       	console.log("长度错误");
+       }else{//要求长度大于实际长度，补零。
+       	pp.innerText = "计算结果为：" + arry1.join("").concat('',array.join(""));
+       }
+     
 
  },false);
     </script>
