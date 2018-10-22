@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		ul{
+			width: 300px;
+			height: 400px;
+			background-color: yellow;
+		}
+		li{
+			background-color: skyblue;
+		}
+	</style>
+</head>
+<body>
+	
+	<div>
+		<ul id="ul">
+			<li>
+				123
+			</li>
+			<li>
+				456
+			</li>
+			<li>
+				789
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var ul1  = document.querySelector('ul');
+		// ul.onclick = function(){
+		// 	alert(123);
+		// };
+
+		// 使用事件委托来解决问题
+		ul1.onclick = function(e){
+            var target =  e.target;
+            if(target.nodeName.toLowerCase() == 'li'){
+                alert(123);
+            }
+		};
+	</script>
+</body>
+</html>

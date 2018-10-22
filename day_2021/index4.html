@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+        <input type="button" id="add" value="添加" />
+        <input type="button" id="remove" value="删除" />
+        <input type="button" id="move" value="移动" />
+        <input type="button" id="select" value="选择" />
+    </div>
+
+
+
+    <script type="text/javascript">
+    	var main = document.querySelector('#box');
+    	main.addEventListener('click',function(e){
+               var target =  e.target;
+               switch(target.id){
+               	case 'add':
+               	 alert('add');
+               	 break;
+               	case 'remove':
+               	 alert('remove');
+               	 break;
+               	 case 'move':
+               	 alert('move');
+               	 break;
+               	 case 'select':
+               	 alert('select');
+               	 break;
+               } 
+    	},false);
+    </script>
+	
+</body>
+</html>
