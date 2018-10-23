@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css sprites</title>
+	<style>
+	    *{
+	    	margin:0;
+	    	padding: 0;
+	    }
+		#picture{
+             background: url(./images/ant.jpg) no-repeat;
+             width: 480px;
+             height: 480px;
+             background-position: 0px 0px;
+
+             /*background-color: pink;*/
+             
+
+		}
+	</style>
+</head>
+<body>
+      <div id="picture">
+      	
+      </div>
+
+	<script type="text/javascript">
+ function start(){
+
+
+		var pic = document.querySelector("#picture");
+		var position = -480;
+        var i = 0;
+        var flag = null;
+
+		// 实现帧动画，实现思路是使用定时器，挪动图片的位置实现
+	    flag = setInterval(function(){
+			 i += position; 
+			//  var m = null;
+			 
+			// m = pic.style.backgroundPosition;
+			//  m = 0 +"px" + " "+i+"px";
+            pic.style.backgroundPosition = 0 +"px" + " "+i+"px";
+          
+           if(i < -3960){
+            
+            i  = 0;
+            pic.style.backgroundPosition = "0px "+"0px";
+           }
+
+		},300)
+	}
+	window.onload = function(){
+		start();
+	};
+	</script>
+	
+</body>
+</html>

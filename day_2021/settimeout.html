@@ -5,51 +5,87 @@
 	<title>Document</title>
 </head>
 <body>
-	<div id="fade-obj" style="width:300px;height:300px;background:#000;opacity: 1"></div>
+	<div id="fade-obj" style="width:300px;height:300px;background:#000;"></div>
     <button id="fade-btn">淡出</button>
 
     <script type="text/javascript">
     	var btn = document.querySelector('#fade-btn');
     	var divbox = document.querySelector('#fade-obj');
 
-    	
+    	var i = 1;
+        var flag = null;
+        var flag1 = null;
+
+        function fadeout(){
+            if(btn.innerText == "淡出"){
+                 var flag = setInterval(function(){
+
+                 divbox.style.opacity = i;
+                 i-=0.1;
+                
+                 btn.disabled = true;
+                 if(i <= 0){
+                    i = 0;
+                    btn.disabled = false;
+                    btn.innerText = "淡入";
+                    clearInterval(flag);
+                    btn.addEventListener('click',fadein,false);
+                }
+            },500)
+
+            }
+        }
+        function fadein(){
+
+            
+            
+           flag1 =  setInterval(function(){
+                
+                 divbox.style.opacity = i;
+                 i+=0.1;
+                btn.disabled = true;
+                if(divbox.style.opacity >= 1){
+                    divbox.style.opacity = 1;
+                    btn.disabled = false;
+                    btn.innerText = "淡出";
+                    clearInterval(flag1);
+                    btn.addEventListener('click',fadeout,false)
+                }
+            },500)
+        
+        }
+        btn.addEventListener('click',fadeout,false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     	if(btn.innerText == "淡出"){
 
          
     	btn.addEventListener('click',function(){
     		
-    		var time = setInterval(function(){
-
-    			 divbox.style.opacity -= 0.1;
-    			
-    			btn.disabled = true;
-    			if(divbox.style.opacity <= 0){
-    				divbox.style.opacity = 0;
-    				btn.disabled = false;
-    				btn.innerText = "淡入";
-    				clearInterval(time);
-    			}
-    		},500)
-
+    		
     	},false);
 
     }else if(btn.innerText == "淡入"){
-     btn.addEventListener('click',function(){
-    		
-    		setInterval(function(){
-    			var i = 0.1
-    			 divbox.style.opacity += i;
-    			
-    			btn.disabled = true;
-    			if(divbox.style.opacity >= 1){
-    				divbox.style.opacity = 1;
-    				btn.disabled = false;
-    				btn.innerText = "淡出";
-    				// clearInterval(time1);
-    			}
-    		},500)
-    	},false);
+     
     }
+
+
+
+
     </script>
 </body>
 </html>
