@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+   var scoreObject = {
+    "Tony": {
+        "Math": 95,
+        "English": 79,
+        "Music": 68
+    }, 
+    "Simon": {
+        "Math": 100,
+        "English": 95,
+        "Music": 98
+    }, 
+    "Annie": {
+        "Math": 54,
+        "English": 65,
+        "Music": 88
+    }
+}
+
+     // 对象转换成数组
+     // var scoreArray = [
+     //  ["Tony",95,79,68],
+
+
+     // ];
+    // let obj = {'未完成':5, '已完成':8, '待确认':4, '已取消':6};
+    // var array = [];
+    // var array1 = [];
+    // for(let i in obj){
+    // 	// let o = {};
+
+    // 	// o[i]=obj[i];
+
+    // 	// array.push(o);
+    //     array.push(obj[i]);
+    //     array1.push(i);
+    // }
+
+    //  console.log(array);
+    //  console.log(array1);
+    
+     var arr1 = [];
+     var arr2 = [];
+     for(var i in scoreObject){
+     	 var arr = [];
+     	arr.push(i);//装头(键)；
+
+     	for( var j in scoreObject[i]){
+     		arr.push(scoreObject[i][j]);
+     	}
+
+     	arr1.push(arr);
+     }
+     console.log(arr1);
+ 
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*
+实现一个字符串头尾去除空格的函数
+注意需要去除的空格，包括全角、半角空格
+暂时不需要学习和使用正则表达式的方式
+*/
+function diyTrim(str) {
+    var result = "";
+    let start;//起始位置
+    let end;//结束位置
+    
+    // 找到非空的位置
+    for(let i =0;i<str.length;i++){
+    	if(str.charCodeAt(i) !== 32 && str.charCodeAt(i)!== 12288){
+    		start = i;
+    		break;
+    	}
+    }
+    //找到结尾的位置
+    for(let i =str.length-1;i>0;i--){
+    	if(str.charCodeAt(i) !== 32 && str.charCodeAt(i)!== 12288){
+    		end = i + 1;
+    		break;
+    	}
+    }
+
+     result = str.substring(start,end);
+
+
+
+    return result
+}
+
+// 测试用例
+console.log(diyTrim(' a f b    ')); // ->a f b
+console.log(diyTrim('    ffdaf    ')); // ->ffdaf
+console.log(diyTrim('1    ')); // ->1
+console.log(diyTrim('　　f')); // ->f
+console.log(diyTrim('  　  a f b 　　 ')); // ->a f b
+console.log(diyTrim(' ')); // ->
+console.log(diyTrim('　')); // ->
+console.log(diyTrim('')); // ->
+
+/*
+去掉字符串str中，连续重复的地方
+*/
+// 实现方法,将字符串转换为A数组，然后用一个空数组B，遍历a,然后判断数组b中最后一个字符是否和a中的相同，不同入栈，相同不入
+function removeRepetition(str) {
+    var result = "";
+    var arrA = str.split('');
+    var arrB = [];
+    var j = 0;
+   for(var i =0;i<arrA.length;i++){
+   	   if(arrA[i] !== arrB[j]){
+            
+           j++;
+           
+           arrB[j] = arrA[i];
+       
+
+   	   }
+   	   result =  arrB.join('');
+   }
+
+
+
+
+
+    return result;
+}
+
+// 测试用例
+console.log(removeRepetition("aaa")); // ->a
+console.log(removeRepetition("abbba")); // ->aba
+console.log(removeRepetition("aabbaabb")); // ->abab
+console.log(removeRepetition("")); // ->
+console.log(removeRepetition("abc")); // ->abc
+	</script>
+	
+</body>
+</html>

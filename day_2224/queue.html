@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input id="queue-input" type="text">
+    <p id="queue-cont">队列内容：apple-&gt;pear</p>   
+
+    <div id="btns">
+    	
+    
+    <button id="in-btn">入队</button>
+    <button id="out-btn">出队</button>
+    <button id="font-btn">打印队头元素内容</button>
+    <button id="empty-btn">判断队列是否为空</button>
+	</div> 
+	<script type="text/javascript">
+		var queue = ["apple", "pear"];
+        var btns = document.querySelector('#btns');
+		var inbtn = document.querySelector('#in-btn');
+		var outbtn = document.querySelector('#out-btn');
+		var frontbtn = document.querySelector('#font-btn');
+		var emptybtn =  document.querySelector('#empty-btn');
+		var input = document.querySelector('#queue-input');
+        var pp = document.querySelector("#queue-cont");
+        console.log(queue);
+		btns.addEventListener('click',function(e){
+              var target = e.target;
+              if(target.nodeName.toLowerCase() == 'button'){
+              	switch(target.id){
+              		case 'in-btn':
+              		 queue.push(input.value);
+              		 
+              		 console.log(queue);
+              		 pp.innerText = "队列内容："+queue.join('->');
+              		 
+                     
+              		break;
+              		case 'out-btn':
+              		 queue.pop(input.value);
+              		 pp.innerText = "队列内容："+queue.join('->');
+              		break;
+              		case 'font-btn':
+              		alert(queue[0]);
+              		break;
+              		case 'empty-btn':
+              		if(queue.length > 0){
+              			alert("full");
+              			alert(queue);
+
+              		}else{
+              			alert("null");
+              		}
+              		break;
+              	}
+              }
+		},false);
+	</script>
+</body>
+</html>

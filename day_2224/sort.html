@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var arr = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+         function mysort(a,b){
+             if(a-b > 0){
+             	return -1;
+
+             }else if(a-b <0){
+             	return 1;
+             }else{
+             	return 0;
+             }
+
+
+         }
+		console.log(arr.sort(mysort));
+         var arr1 = ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
+            console.log(arr1.sort().reverse());//反
+            console.log(arr1.sort());
+        var arr2 = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
+         
+         console.log(arr2.sort(function(a,b){
+         	return b[1] - a[1];
+         }))
+
+
+    var arr3 = [
+    {
+        id: 1,
+        name: 'candy',
+        value: 40
+    }, {
+        id: 2,
+        name: 'Simon',
+        value: 50
+    }, {
+        id: 3,
+        name: 'Tony',
+        value: 45
+    }, {
+        id: 4,
+        name: 'Annie',
+        value: 60
+    }
+];
+
+  console.log(arr3.sort(function(a,b){
+  	return a['value']-b['value'];
+  }));
+	</script>
+</body>
+</html>

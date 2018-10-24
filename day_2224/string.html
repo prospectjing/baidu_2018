@@ -39,8 +39,9 @@
     var textarea1 = document.querySelector('#str-a');
     var textarea2 = document.querySelector('#str-b');
     var input3 = document.querySelector('#num-a');
-    var input3 = document.querySelector('#num-b');
+    var input4 = document.querySelector('#num-b');
     var pin = document.querySelector('#result');
+
 
     //使用委托
     var btns = document.querySelector('#btns');
@@ -63,34 +64,62 @@
                   }
          		break;
          		case 'btn3':
-         		   pin.innerText = textarea1.value.concat(textarea2.value);
+         		  pin.innerText = textarea1.value.concat(textarea2.value);
          		break;
          		case 'btn4':
          		  pin.innerText =  textarea1.value.indexOf(textarea2.value);
          		break;
          		case 'btn5':
-         		pin.innerText = textarea2.value.lastIndexOf(textarea1.value);
+         		  pin.innerText = textarea2.value.lastIndexOf(textarea1.value);
          		break;
          		case 'btn6':
-         		
+         		  if(input1.checked){
+                    pin.innerText = textarea1.value.slice(Number(input3.value),Number(input4.value));
+                  }else if(input2.checked){
+                    pin.innerText = textarea2.value.slice(Number(input3.value),Number(input4.value));
+                  }
          		break;
          		case 'btn7':
-         		
+         		   if(input1.checked){
+                    pin.innerText = textarea1.rows;
+                  }else if(input2.checked){
+                    pin.innerText = textarea2.rows;
+                  }
          		break;
          		case 'btn8':
-         		
+         		 if(input1.checked){
+                    pin.innerText = textarea1.value.substr(Number(input3.value),Number(input4.value));
+                  }else if(input2.checked){
+                    pin.innerText = textarea2.value.substr(Number(input3.value),Number(input4.value));
+                  }
          		break;
          		case 'btn9':
-         		
+         		 if(input1.checked){
+                    pin.innerText = textarea1.value.toUpperCase();
+                  }else if(input2.checked){
+                    pin.innerText = textarea2.value.toUpperCase();
+                  }
          		break;
          		case 'btn10':
-         		
+         		 if(input1.checked){
+                    pin.innerText = textarea1.value.toLowerCase();
+                  }else if(input2.checked){
+                    pin.innerText = textarea2.value.toLowerCase();
+                  }
          		break;
          		case 'btn11':
-         		
+         		 if(input1.checked){
+                    pin.innerText = getHalfKong(textarea1.value);
+                  }else if(input2.checked){
+                    pin.innerText = getHalfKong(textarea2.value);
+                  }
          		break;
          		case 'btn12':
-         		
+         		if(input1.checked){
+                    pin.innerText = textarea1.value.replace(/a/,findA(textarea2.value));
+                  }else if(input2.checked){
+                    pin.innerText = textarea2.value.replace(/a/,findA(textarea1.value));
+                  }
          		break;
          	}
          }
@@ -100,7 +129,29 @@
 
 
 
+ function getHalfKong(str){
+    //清除字符串中的半角字符
+    // 转换成数组，然后遍历数组，替换掉空格，最后再转换成字符串返回
 
+    var arr = str.split('');
+    var arr1 = new Array();
+    var j = 0;
+    for(var i = 0;i<str.length;i++){
+        if(str.charCodeAt(i) !== 32){
+
+        
+             arr1[j] = arr[i];
+             j++;
+        }
+    }
+    return arr1.join('');
+
+ }
+
+function findA(str){
+   //找到字符串中的a,替换成str1中的字符串。
+   return str;
+}
 
 
 
