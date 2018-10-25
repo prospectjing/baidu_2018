@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>IFE ECMAScript-Task 28</title>
+  <style>
+     #email-input {
+      box-sizing: border-box;
+      width: 180px;
+     }
+    .email-sug {
+      box-sizing: border-box;
+      border-right: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      width: 180px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+     }
+     .email-sug li {
+       list-style-type: none;
+     }
+     .active {
+       background-color: #FFC4CE;
+     }
+     .email-sug li:hover {
+       background-color: #bcdfe8;
+     }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+      <input id="email-input" type="text" >
+      <ul id="email-sug-wrapper" class="email-sug"></ul>
+  </div>
+  <script>
+    // 邮箱后缀List参考
+    var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+    var inputDom = document.getElementById('email-input');
+    var sugWrapper = document.getElementById('email-sug-wrapper');
+    window.onload = inputDom.focus();
+    inputDom.oninput = function() {
+      var input = getInput(inputDom);
+      var list = createList(inputDom);
+      addList(list,sugWrapper);
+      statusChange(input,sugWrapper);
+    }//获取用户输入，生成提示框中的提示内容，将提示内容添加到email-sug-wrapper中 控制email-sug-wrapper的显示/隐藏状态
+    function getInput(obj) {
+        var input = obj.value;
+        return input.trim();
+    }
+     var HtmlUtil = {
+         /*1.用浏览器内部转换器实现html转码*/
+         htmlEncode:function (html){
+             //1.首先动态创建一个容器标签元素，如DIV
+             var temp = document.createElement ("div");
+             //2.然后将要转换的字符串设置为这个元素的innerText(ie支持)或者textContent(火狐，google支持)
+             (temp.textContent != undefined ) ? (temp.textContent = html) : (temp.innerText = html);
+             //3.最后返回这个元素的innerHTML，即得到经过HTML编码转换的字符串了
+             var output = temp.innerHTML;
+             temp = null;
+             return output;
+          },
+         /*2.用浏览器内部转换器实现html解码*/
+         htmlDecode:function (text){
+             //1.首先动态创建一个容器标签元素，如DIV
+             var temp = document.createElement("div");
+             //2.然后将要转换的字符串设置为这个元素的innerHTML(ie，火狐，google都支持)
+             temp.innerHTML = text;
+             //3.最后返回这个元素的innerText(ie支持)或者textContent(火狐，google支持)，即得到经过HTML解码的字符串了。
+             var output = temp.innerText || temp.textContent;
+             temp = null;
+             return output;
+         }
+     };
+    function createList(obj) {
+        var input = HtmlUtil.htmlEncode(getInput(obj));
+        var postfix,match;
+        var list = new Array();
+        var leng = input.indexOf("@");
+        if (leng != -1) {
+          match = input.substring(leng+1,input.length);
+          input = input.substring(0,leng);
+        }
+        for(i = 0; i < postfixList.length; i++) {
+          postfix = postfixList[i];
+          if(match === undefined || postfix.indexOf(match) === 0) {
+              list.push("<li>" + input + "@" + postfix + "</li>");
+            } else if (i < 4 ) {
+              continue;
+            } else if (list.length === 0){
+              for(j = 0; j < postfixList.lenght; j++) {
+                postfix = postfixList[j];
+                list.push("<li>" + input + "@" + postfix + "</li>");
+              }
+            } else break;
+          }
+          list.unshift(list.shift().replace('<li>','<li class = "active">'));
+        return list;
+    }//遍历postfixList {把用户输入和每一个postfix进行结合成为每一个Li}
+     function addList(arr,obj) {
+       var list = arr.join("");
+       obj.innerHTML = list;
+    }
+    function statusChange(con,obj2) {
+        if (con === "") {
+            listHide(obj2);
+        } else {
+            listAppear(obj2);
+        }
+    }
+    function listHide(obj) {
+        obj.style.display = "none";
+    }
+    function listAppear(obj) {
+        obj.style.display = "block";
+    }
+    sugWrapper.onclick = function(event) {
+      var e = event || window.event;
+      var source = e.target || e.srcElement;
+      if(source.nodeName.toLowerCase() === "li") {
+        inputDom.value = HtmlUtil.htmlDecode(source.innerHTML);
+        listHide(sugWrapper);
+      }
+      stopPropagation(e);
+      inputDom.focus();
+    }
+    function stopPropagation(e) {
+      if(e.stopPropagation) {
+        e.stopPropagation();
+      } else {
+        e.cancelBubble = true;
+      }
+    }
+    //重置选中状态
+    function selectedReset() {
+      var select = document.getElementsByClassName('active')[0];
+      if (select = undefined) {
+        sugWrapper.firstChild.add('active');
+      } else if (select != sugWrapper.firstChild && select != undefined) {
+        select.classList.remove('active');
+        sugWrapper.firstChild.add('active');
+      }
+    }
+    //监听三个特殊键盘的事件
+    inputDom.onkeyup = function getKeyCode(event) {
+      var keyNum = window.event ? event.keyCode :event.which;
+      console.log(keyNum);
+      var selected = document.getElementsByClassName('active')[0];
+      if (keyNum != 38 && keyNum != 40 && keyNum != 13) {
+        selectedReset();
+      } else {
+        selected.classList.remove('active');
+      }
+      if(keyNum === 38) {
+        if(selected != sugWrapper.firstChild ) {
+          selected.previousSibling.classList.add('active');
+        } else {
+          sugWrapper.lastChild.classList.add('active');
+        }
+      }
+      if(keyNum === 40) {
+        if(selected != sugWrapper.lastChild) {
+          selected.nextSibling.classList.add('active');
+        } else {
+          sugWrapper.firstChild.classList.add('active');
+        }
+      }
+      if(keyNum === 13) {
+        inputDom.value = HtmlUtil.htmlDecode(selected.innerHTML);
+        listHide(sugWrapper);
+      }
+      if(keyNum === 27) {
+        inputDom.select();
+        listHide(sugWrapper);
+      }
+    }
+  </script>
+</body>
+</html>

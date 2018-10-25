@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+
+		input{
+			width: 300px;
+			height: 30px;
+			display: block;
+           
+            position: absolute;
+            top: 10;
+            left:auto;
+		}
+
+		ul{
+			
+			background-color: skyblue;
+			position: absolute;
+			top: 34px;
+			left: auto;
+			/*display: none;*/
+			list-style: none;
+		}
+		li{
+			width: 304px;
+			height:30px;
+			background-color: skyblue;
+			border-top: 1px solid black;
+		}
+		li:hover{
+			background-color: pink;
+		}
+		div{
+             position: relative;
+             top: 0;
+             left:500px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+    <input id="email-input" type="text">
+    <ul id="email-sug-wrapper" class="email-sug"></ul>
+    </div>
+
+
+	<script type="text/javascript">
+		var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+		//邮箱后缀参考
+        // 监听输入框的输入事件
+        var input = document.querySelector('#email-input');
+        var ul = document.querySelector('#email-sug-wrapper');
+        
+        ul.addEventListener('click',function(e){
+               var targets = e.target;
+               if(targets.nodeName.toLowerCase() == 'li'){
+               	  input.value =  targets.innerHTML;
+               	  notShow();
+               }
+               input.focus();
+        },false);
+        input.addEventListener('input',function(){
+            
+        
+           var input1  = input.value.trim();//getUserInput(input.value);
+           insert(production(input1));
+           controlShow(input1);
+        },false); //一个一个输入，esc，上下左右键不起作用
+
+        // 第一步监听用户输入
+        // 第二步获取用户输入
+        // 第三步生成提示框内容，根据第二步获得的内容，遍历postfixList数组，生成填充内容
+        // 第四部根据实际是否有提示内容，控制email-sug-wrapper的显示和隐藏情况。
+        
+        function getUserInput(input){
+        	//获取用户输入
+           // 注意trim的情况，清除字符串两端的空格
+           // 找到字符串第一个和最后一个不为空的下标然后使用substr()
+           let start = 0;
+           let end = 0;
+           
+           for(let i = 0;i<input.length;i++){
+           	if(input.charCodeAt(i)!= 32 && input.charCodeAt(i)!=12288){
+           		start = i;
+           		break;
+           	}
+           }
+           for(let i = input.length-1;i>0;i--){
+           	if(input.charCodeAt(i)!=32 && input.charCodeAt(i)!=12288){
+           		end = i+1;
+           		break;
+           	}
+           }
+           input = input.substring(start,end);
+           return input;
+        }
+
+
+
+
+      function production(inner){
+      	 let output = [];
+         let input = inner;                   // getUserInput(inner);
+         let pre = "";
+         let post = "";
+         let list = "";
+         if(input.indexOf('@')!== -1){
+              pre = input.slice(0,input.indexOf('@'));
+              post = input.slice(input.indexOf('@')+1);
+         }else{
+         	pre = input;
+         }
+
+        
+         for(let i = 0;i<postfixList.length;i++){
+         	if(postfixList[i].indexOf(post)!=-1){
+         		list += '<li>'+pre+"@"+postfixList[i]+'</li>'
+         	}
+         }
+         
+         return list;
+         
+         // let lis = document.createElement('li');
+          
+         //  ul.appendChild(lis);
+      }
+
+      function insert(list){
+          ul.innerHTML = list; 
+      }
+      
+      function controlShow(input){
+      	if(input == ""){
+      		ul.style.display ="none";
+      	}else{
+      		ul.style.display = "block";
+      	}
+      }
+
+
+     function show(){
+     	ul.style.display = "block";
+
+     }
+     
+     function notShow(){
+     	ul.style.display = "none";
+     	
+     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // input.addEventListener('keydown',function(){
+        //     console.log('event handle');
+        // 	console.log(input.value); //带有一个字符的缓存区，按下esc或回车，输出全部文字，上下左右键不起作用，
+        // 	// 按住字母键一直输入
+        // },false);
+
+        // input.addEventListener('keypress',function(){
+        //     console.log('event handle');
+        // 	console.log(input.value); //带有缓存区，按下esc无效，回车有效，上键回到行首。
+        // },false);
+
+        // input.addEventListener('oninput',function(){
+        //     console.log('event handle');
+        // 	console.log(input.value); //带有缓存区，按下esc无效，回车有效，上键回到行首。
+        // },false);
+	</script>
+</body>
+</html>
