@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<div id="date">
+		
+	</div>
+
+
+
+	<script type="text/javascript">
+// 		在页面中显示当前日期及时间，按秒更新
+// 格式为 YYYY 年 MM 月 DD 日 星期 D HH:mm:ss
+// 注意位数的补齐，比如：
+// -- 假设时间为2008年10月10日星期一的12点12分12秒，显示2008年10月10日星期一 12:12:12
+// -- 假设时间为2008年1月1日星期一的3点2分2秒，显示2008年01月01日星期一 03:02:02
+// 编码过程中，我们希望你注意对函数的封装，尽量让一个函数就做一个事情，而不要把所有的功能、代码揉在一起：
+
+// 封装一个函数，来根据某个日期返回这一天是星期几
+// 封装一个函数，把月、日、小时等出现个位数的情况前面补充0，补充为两位，比如1变为01
+// 封装一个函数，把最后的日期时间，按照要求的格式进行包装
+// 可能不止上面这些，尽可能地进行功能的解耦和拆解
+
+    var datebox = document.querySelector("#date");
+   
+    // // alert(time);
+    // console.log(time.getFullYear());                     //年 
+    // console.log(time.getMonth());                     //月0-11
+    // console.log(time.getDate());//日1-31
+    // console.log(time.getHours());        //时 0-23
+    // console.log(time.getMinutes());                      //分0-59
+    // console.log(time.getSeconds());                     //秒0-59
+    // console.log(time.getDay());           //星期0-6
+
+   
+
+
+    
+
+    
+
+   setInterval(function(){
+   	  var  time = new Date();
+   	  function getYearMonthDay(time){
+         let year =  time.getFullYear() +"年";
+         let month = parseInt(time.getMonth()) + 1+"月";
+         let day = time.getDate()+"日";
+         return year + month + day;
+    }
+
+    function xinqi(time){
+    	let xinqi = "星期 " + time.getDay() +" ";
+    	return xinqi;
+    }
+    function timeClick(time){
+          let hour = parseInt(time.getHours());
+          let min = parseInt(time.getMinutes());
+          let sen = parseInt(time.getSeconds());
+
+          if(sen < 10){
+          	sen = '0'+sen;
+          }
+          if(hour<10){
+          	hour = '0'+hour;
+          }
+          if(min<10){
+          	min  = '0'+ min;
+          }
+
+          return hour +" : "+min +" : "+ sen;
+
+    }
+   	  datebox.innerText =  getYearMonthDay(time) + xinqi(time) +timeClick(time);
+   },500)
+
+
+
+
+	</script>
+</body>
+</html>

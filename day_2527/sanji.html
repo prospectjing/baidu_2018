@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<select id="year-select">
+    <option value="2000">2000</option>
+    <option value="2001">2001</option>
+    <option value="2002">2002</option>
+    ……
+    <option value="2032">2002</option>
+</select>
+
+<select id="month-select">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    ……
+    <option value="12">12</option>
+</select>
+
+<select id="day-select">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    ……
+    <option value="31">31</option>
+</select>
+
+<select id="hour-select">
+    <option value="0">00</option>
+    <option value="1">01</option>        
+    ……
+    <option value="23">23</option>
+</select>
+
+<select id="minite-select">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    ……
+    <option>59</option>
+</select>
+
+<select id="second-select">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    ……
+    <option>59</option>
+</select>
+
+<p id="result-wrapper">现在距离 2019年1月1日星期2 12:35:20 还有 X 天 X 小时 X 分 X 秒</p>
+	<script type="text/javascript">
+		
+         var year  = document.querySelector("#year-select");
+         year.addEventListener("change",function(){
+
+		var year1 = year.options;
+		var yindex = year.selectedIndex; //选中de option
+        var ytext = year1[yindex].text;
+         	alert(ytext);
+         },false);
+        
+		var month = document.querySelector("#month-select");
+        var day  = document.querySelector("#day-select");
+
+        var hour = document.querySelector("#hour-select");
+        var min = document.querySelector("#minite-select");
+        var sec  = document.querySelector("#second-select");
+
+        console.log();
+
+	</script>
+</body>
+</html>
