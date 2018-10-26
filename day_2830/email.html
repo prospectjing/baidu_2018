@@ -42,6 +42,9 @@
              top: 0;
              left:500px;
 		}
+		li:hover,.active{
+            background-color: #EEA9B8;
+		}
 	</style>
 </head>
 <body>
@@ -68,7 +71,7 @@
         },false);
         input.addEventListener('input',function(){
             
-        
+           
            var input1  = input.value.trim();//getUserInput(input.value);
            insert(production(input1));
            controlShow(input1);
@@ -78,7 +81,45 @@
         // 第二步获取用户输入
         // 第三步生成提示框内容，根据第二步获得的内容，遍历postfixList数组，生成填充内容
         // 第四部根据实际是否有提示内容，控制email-sug-wrapper的显示和隐藏情况。
-        
+        var index = 0;
+        input.addEventListener('keydown',function(e){
+             var targets1 = e.target;
+             if(e.keyCode == 13 ){//回车键
+             	input.value = ul.children[index].innerHTML;
+             	notShow();
+
+             }
+             if(e.keyCode == 38){
+             	//上键
+             	if(index == 0){
+             		index = postfixList.length-1;
+             		reset(index);
+             	}else{
+             		index--;
+             		reset(index);
+             	}
+
+
+             }
+             if(e.keyCode == 40){
+             	//下键
+             	if(index == postfixList.length-1){
+             		index=0;
+             		reset(index);
+             	}else{
+             		index++;
+             		reset(index);
+             	}
+
+             }
+        },false);
+
+        function reset(index) {
+		for (var i = 0; i < postfixList.length; i++) {
+			ul.children[i].className = "";
+		}
+		ul.children[index].className = "active";
+	    }	
         function getUserInput(input){
         	//获取用户输入
            // 注意trim的情况，清除字符串两端的空格
