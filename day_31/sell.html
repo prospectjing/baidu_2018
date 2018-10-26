@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="data.js"></script>
+</head>
+<body>
+	<div>
+	<select id="region-select">
+       <option value="hah">华北</option>
+       <option>华南</option>
+       <option>华东</option>
+    </select>
+	</div>
+<script type="text/javascript">
+
+	// select.value 获取的是当前默认选中的option的值
+	// select.selectedIndex 获取的是当前选中的列表的下标
+	// options[1].value 获取option的value值，未设置的时候默认text值
+    // options[0].text 获取option的文本值
+    // options[0].selected //判断option是否被选中，设置为true的话可以选中选项
+	var select = document.querySelector('#region-select');
+	var options = select.options;
+    alert(options[0].selected);
+    select.addEventListener('change',function(){
+    	//渲染生成表格
+     
+    },false);
+
+    function getData(items){
+    	//根据选项获取数据
+    	
+    let product = sourceData;
+    let region = ;
+    let sale = ;
+    let options = items.options;//获取所有选项的数组
+    let text = options[items.selectedIndex].text;
+    if(text == "华南" && text != ''){
+        
+    }
+    if(text == "华北" && text != ''){
+
+    }
+    if(text == "华东" && text != ''){
+
+    }
+    	// 解析js中的数据
+    	// sourceData[index];
+    }
+    function production(){
+         
+    }
+
+
+
+
+</script>
+
+
+</body>
+</html>

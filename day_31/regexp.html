@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+    
+    <input type="text" id="input" placeholder="输入电话，身份证，电话号码匹配" />
+    <button id="btn">提交</button>
+    <script>
+
+    	var btn = document.querySelector('#btn');
+    	var input = document.getElementById('input');
+        var test1 = /[0-9]{11}/;
+        var test2 = /\d{18}/;
+        var text3 = /\d{4}\-\d{7}/;
+     // 匹配电话号码，匹配身份证号，匹配电话号码
+    // var regexp = /[a-z]{1,}/;
+    // var test = regexp.exec('123av');
+    // alert(test);
+
+    btn.addEventListener('click',function(){
+            var message = input.value;
+            alert(text3.exec(message));
+    	},false);
+    </script>
+    
+
+</body>
+</html>
