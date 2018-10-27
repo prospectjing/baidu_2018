@@ -6,7 +6,27 @@
 </head>
 <body>
 
+<table>
+	<tr>
+		<th>产品1</th>
+		<th>产品2</th>
+		<th>产品3</th>
+		<th>产品4</th>
+		<th>产品5</th>
+		<th>产品6</th>
+	</tr>
+    <tr>
+    	<td>样品1</td>
+    	<td>样品2</td>
+    	<td>样品3</td>
+    	<td>样品4</td>
+    	<td>样品5</td>
+    	<td>样品6</td>
+    </tr>
 
+
+
+</table>
 	<script type="text/javascript">
 let sourceData = [{
     product: "手机",
@@ -45,28 +65,38 @@ let sourceData = [{
     region: "华南",
     sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
 }]
-        
-        
-        
-    sourceData.forEach(function(value){
-             
-               if(value.region == '华东'){
-               	return 
-               }
-
-               	
+       
 
 
-             //  var product =  value.product;
-             //  var region = value.region;
-             //  var sale = value.sale;
-             
-             
-             // console.log(product,region,sale);
-             
-      })
+ var ttt = {
+    product: "智能音箱",
+    region: "华南",
+    sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26],
+} 
+        var product = [];
+        var sale = [];
+          for(i in sourceData){
+        
+          if(sourceData[i].region !== -1 && sourceData[i].product !== -1){
+          	product.push(sourceData[i]);
+          }
+
+           
+      	  }
+      	  
+      	 console.log(product);
+    
+
+    for(var j in ttt){
+    var s = ttt[j];
+    console.log(j);
+    console.log(s);
+    }  
+    
+
+   
+
  
 	</script>
-	
 </body>
 </html>

@@ -1,0 +1,224 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="data.js"></script>
+    <title></title>
+    <style>
+        body,
+        div {
+            margin: 0;
+            padding: 0;
+        }
+        #region {
+            width: 150px;
+            float: left;
+            margin-left: 25%;
+        }
+        #product {
+            width: 150px;
+        }
+        #table-wrapper {
+            /* width: 600px; */
+            height: 500px;
+            margin: 0 auto;
+            margin-left: 10%;
+            margin-top: 20px
+        }
+        select {
+            display: block;
+            width: 300px;
+            height: 30px;
+            margin: 0 auto;
+        }
+        table {
+            display: block;
+            width: 700px;
+            border-spacing: 0
+        }
+        td,
+        th {
+            padding: 2px;
+            text-align: center;
+            border: 1px solid;
+            width: 80px;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset onchange="drawTable()" id="region">
+        <legend>region-select :</legend>
+        <div>
+            <input type="checkbox" id="east" name="region-select" value="east" checked>
+            <label for="east">华东</label>
+        </div>
+        <div>
+            <input type="checkbox" id="south" name="region-select" value="south" checked>
+            <label for="south">华南</label>
+        </div>
+        <div>
+            <input type="checkbox" id="north" name="region-select" value="north" checked>
+            <label for="north">华北</label>
+        </div>
+    </fieldset>
+    <fieldset onchange="drawTable()" id="product">
+        <legend>product-select :</legend>
+        <div>
+            <input type="checkbox" id="phone" name="product-select" value="phone" checked>
+            <label for="phone">手机</label>
+        </div>
+        <div>
+            <input type="checkbox" id="pc" name="product-select" value="pc" checked>
+            <label for="pc">笔记本</label>
+        </div>
+        <div>
+            <input type="checkbox" id="voicebox" name="product-select" value="voicebox" checked>
+            <label for="voicebox">智能音箱</label>
+        </div>
+    </fieldset>
+    <!-- <label for="">region-select :</label> -->
+    <!-- <select name="" id="region-select" onchange="drawTable()">
+        <option value="all" selected>all</option>
+        <option value="华东">华东</option>
+        <option value="华南">华南</option>
+        <option value="华北">华北</option>
+    </select>
+    <label for="">product-select :</label>
+    <select name="" id="product-select" onchange="drawTable()">
+        <option value="all" selected>all</option>
+        <option value="手机">手机</option>
+        <option value="笔记本">笔记本</option>
+        <option value="智能音箱">智能音箱</option>
+    </select> -->
+    <div id="table-wrapper">
+    </div>
+    <script>
+        //遍历获取select所有数据
+        function regionSelectOption() {
+            // console.log("getData function");
+            //get all data
+            let select = document.getElementsByName("region-select");
+            let regionSelectedOpthions = [];
+            for (i in select) {
+                const a = select[i].nextElementSibling;
+                if (a && select[i].checked) {
+                    regionSelectedOpthions.push(a.innerHTML)
+                    // console.log(a.innerHTML)
+                }
+            }
+            // console.log(regionSelectOption)
+            return regionSelectedOpthions;
+            // let options = select.getElementsByTagName("option");
+            // console.log(select.options[select.selectedIndex])
+            // let selected = select.options[select.selectedIndex]
+            // return selected.value;
+        }
+        function productSelect() {
+            // let select = document.getElementById("product-select");
+            // let selected = select.options[select.selectedIndex]
+            // return selected.value;
+            let select = document.getElementsByName("product-select");
+            let productSelectedOpthions = [];
+            for (i in select) {
+                const a = select[i].nextElementSibling;
+                if (a && select[i].checked) {
+                    productSelectedOpthions.push(a.innerHTML)
+                    // console.log(a.innerHTML)
+                }
+            }
+            return productSelectedOpthions;
+        }
+        // function allDataToTable() {
+        //     let tableWrapper = document.querySelector("#table-wrapper");
+        //     let table = document.createElement("table");
+        //     for (let i = 0; i < sourceData.length; i++) {
+        //         let tr = document.createElement("tr");
+        //         tr.innerHTML = sourceData[i];
+        //         table.appendChild(tr);
+        //     }
+        //     tableWrapper.appendChild(table);
+        // }
+        function drawTable() {
+            // console.log(regionSelectOption())
+            let tableWrapper = document.querySelector("#table-wrapper");
+            tableWrapper.innerHTML = '';
+            let table = document.createElement("table");
+            let tr = document.createElement("tr");
+            let regionselectedoption = regionSelectOption();
+            let productOption = productSelect();
+            let thArr = ["product", "region", "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
+            for (let i = 0; i < thArr.length; i++) {
+                let td = document.createElement("th");
+                td.innerHTML = thArr[i];
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
+            // console.log(regionselectedoption.length)
+            // console.log(productOption.length)
+            for (let i = 0; i < sourceData.length; i++) {
+                if (regionselectedoption.indexOf(sourceData[i].region) === -1 ||
+                    productOption.indexOf(sourceData[i].product) === -1)
+                    continue
+                tr = document.createElement("tr");
+                let td = document.createElement("td");
+                
+                td.innerHTML = sourceData[i].product;
+                // td.id = "product" + i;
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.innerHTML = sourceData[i].region;
+                tr.appendChild(td);
+                for (let j = 0; j < sourceData[i].sale.length; j++) {
+                    td = document.createElement("td");
+                    td.innerHTML = sourceData[i].sale[j];
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+            }
+            tableWrapper.appendChild(table);
+            span(table)
+        }
+        function span(table) {
+            let trs = table.childNodes
+            // console.log(trs);
+            let regionselectedoption = regionSelectOption();
+            if (regionselectedoption.length === 1) {
+                // let temp = []
+                for (let i = trs.length - 1; i >= 0; i--) {
+                    const t = trs[i].childNodes[1].innerHTML
+                    trs[i].childNodes[1].innerHTML = trs[i].childNodes[0].innerHTML
+                    trs[i].childNodes[0].innerHTML = t
+                    //  temp.push()
+                    if (i > 1)
+                        trs[i].deleteCell(0);
+                }
+                console.log(trs.length - 1)
+                if (trs.length > 1) {
+                    trs[1].childNodes[0].rowSpan = trs.length - 1
+                }
+                // for (let i =1; i <  trs.length; i++) {
+                //     console.log(trs[i].childNodes[0].innerHTML)
+                //     temp.push(trs[i].childNodes[0].innerHTML)
+                // }
+            } else {
+                let count = 1
+                for (let i = trs.length - 1; i > 0; i--) {
+                    // console.log(trs[i].childNodes[0].innerHTML);
+                    if (trs[i].childNodes[0].innerHTML === trs[i - 1].childNodes[0].innerHTML) {
+                        trs[i].deleteCell(0);
+                        count++;
+                    } else {
+                        // console.log(count)
+                        trs[i].childNodes[0].rowSpan = count
+                        count = 1
+                        // console.log(trs[i].childNodes[0])
+                    }
+                }
+            }
+        }
+        drawTable()
+    </script>
+</body>
+</html>

@@ -3,16 +3,57 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<style>
+
+	    #region{
+	    	width: 200px;
+	    	height: 30px;
+	    	float: left;
+	    }
+	    #product{
+	    	width: 230px;
+	    	height: 30px;
+	    }
+		#test{
+			width: 300px;
+			height: 300px;
+		}
+
+		table {
+			border-collapse: collapse;
+		}
+		
+		td,
+		th {
+			width: 80px;
+			height: 18px;
+			border: 1px solid #000;
+			text-align: center;
+			text-indent: 18px;
+			line-height: 26px;
+		}
+	</style>
 	<script type="text/javascript" src="data.js"></script>
 </head>
 <body>
-	<div>
-	<select id="region-select">
-       <option value="hah">华北</option>
-       <option>华南</option>
-       <option>华东</option>
-    </select>
-	</div>
+	<div id="holder">
+		<fieldset id="region">
+	      <label for="east">华东</label><input type="checkbox" name="region-select" id="east" />
+	      <label for="north">华北</label><input type="checkbox" name="region-select" id="north"/>
+	      <label for="south">华南</label><input type="checkbox" name="region-select" id="south"/>
+		</fieldset>
+	   
+       <fieldset id="product">
+       	<label for="phone">手机</label><input type="checkbox" name="product-select" id="phone"/>
+        <label for="computer">笔记本</label><input type="checkbox" name="product-select" id="computer"/>
+        <label for="smart">智能音箱</label><input type="checkbox" name="product-select" id="smart"/>
+       </fieldset>
+       
+    </div>
+    <div id="table-wrapper">
+    
+    </div>
+	
 <script type="text/javascript">
 
 	// select.value 获取的是当前默认选中的option的值
@@ -20,40 +61,119 @@
 	// options[1].value 获取option的value值，未设置的时候默认text值
     // options[0].text 获取option的文本值
     // options[0].selected //判断option是否被选中，设置为true的话可以选中选项
-	var select = document.querySelector('#region-select');
-	var options = select.options;
-    alert(options[0].selected);
-    select.addEventListener('change',function(){
-    	//渲染生成表格
-     
-    },false);
+	var holder = document.getElementById('holder');
+	holder.addEventListener('change',function(e){
+         let targets = e.target;
+         if(targets.nodeName.toLowerCase() =='input'){
+         	//getSelects(); //获取地区
+         	//getSelectsP();//获取货物种类
+           var gg =  production(sourceData,getSelects(),getSelectsP());
+           console.log(gg);
+           renderTable(gg);
+         }
+	},false);
 
-    function getData(items){
-    	//根据选项获取数据
+	
+
+    //选择各个checkbox,并为其添加事件
+    function getSelects(){
+    	let regionselects = [];
+    	let regionInputs = document.getElementsByName('region-select');
+    	//获取选项的名称内容，可以从前一个兄弟元素处获取
+    	for(var i in regionInputs){
+    	const a = regionInputs[i].previousSibling;
+    	if(a && regionInputs[i].checked){
+           //找到label并且input被选中的话，获取内容
+           regionselects.push(a.innerHTML);
+    	}
+    	}
     	
-    let product = sourceData;
-    let region = ;
-    let sale = ;
-    let options = items.options;//获取所有选项的数组
-    let text = options[items.selectedIndex].text;
-    if(text == "华南" && text != ''){
-        
-    }
-    if(text == "华北" && text != ''){
-
-    }
-    if(text == "华东" && text != ''){
-
-    }
-    	// 解析js中的数据
-    	// sourceData[index];
-    }
-    function production(){
-         
+    	return regionselects;
     }
 
 
+    function getSelectsP(){
+    	//获取产品信息
+    	let select = document.getElementsByName('product-select');
+    	let products = [];
 
+    	for(var j in select){
+    		//找到前一个兄弟节点
+    	const b = select[j].previousSibling;
+    	if(b && select[j].checked){
+    		products.push(b.innerHTML);
+    	}
+
+    	}
+    	return products;
+    }
+  
+    function production(sourceData,filter1,filter2){
+    	//获取全部数据,剥离数据，使用获取到的input判断
+        let sourcedata= sourceData;
+        //这是一个对象数组
+        // 遍历它
+        let regions = filter1;
+        let products = filter2;
+       
+        let list = [];
+       for(let i in sourcedata){
+       	    if(regions.indexOf(sourcedata[i].region !== -1 && products.indexOf(sourcedata[i].product !== -1))){
+       	    	list.push(sourcedata[i]);
+       	    }
+       }
+       
+       return list;
+    }
+  
+    function  renderTable(list){
+    	//渲染表格
+        let showdiv = document.querySelector('#table-wrapper');
+        let table = document.createElement('table');
+        let tr = document.createElement('tr');
+        tr.innerHTML = `
+        <th>商品</th>
+        <th>地区</th>
+        <th>1月</th>
+        <th>2月</th>
+        <th>3月</th>
+        <th>4月</th>
+        <th>5月</th>
+        <th>6月</th>
+        <th>7月</th>
+        <th>8月</th>
+        <th>9月</th>
+        <th>10月</th>
+        <th>12月</th>
+        <th>12月</th>
+        `;
+        table.appendChild(tr);
+        showdiv.appendChild(table);
+       
+       for(let i in list){
+       	//循环遍历lsit
+       let trs = document.createElement('tr');
+
+       	 for(let j in list[i]){
+            if(!Array.isArray(list[i][j])){//如果不是数组说明是前两个的地点和产品种类
+            let td = document.createElement('td');
+            td.innerHTML = list[i][j];
+            trs.appendChild(td);
+            }else{
+            	for(let k in list[i][j]){
+                   let td = document.createElement('td');
+
+            		td.innerHTML = list[i][j][k];
+            		trs.appendChild(td);
+            	}
+
+            }
+
+       	 }
+       	 table.appendChild(trs);
+       }
+       showdiv.appendChild(table);
+    }
 
 </script>
 
