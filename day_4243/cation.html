@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script type="text/javascript">
+	function Person(name,age,height){
+		//定义一个构造函数
+		this.name = name;
+		this.age = age;
+		this.height = height;
+	}
+
+	Person.prototype.intersting = function(){
+             console.log("my interst is eat !!!");
+	};//在原型对象上定义一个方法
+
+
+	function Teacher(name,age,height,subject){
+		Person.call(this,name,height);
+		this.subject = subject;
+	}
+
+
+	//创建一个对象的原型对象
+	Teacher.prototype = Object.create(Person.prototype);
+	//使用create函数来创建一个新的原型属性值，将teacher的原型对象指向Person的原型对象，实现继承
+	// 但是还有一些问题没有解决
+    Teacher.prototype.constructor = Teacher;
+
+
+    var teacher = new Teacher('jack',23,175,"mathteacher");
+    teacher.age;
+    teacher.name;
+    teacher.height;
+    teacher.subject;
+</script>
+	
+</body>
+</html>
