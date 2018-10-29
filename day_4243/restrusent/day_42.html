@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>二</title>
+</head>
+<body>
+<script>
+	//重新设计这个餐厅
+	//需求:这是一个餐厅，里面只有一个厨师，一个服务员，一个座位。
+
+	// 顾客入座，服务员招待顾客点菜，点完菜后告诉厨师，厨师做好菜后，服务员上菜，顾客用餐，然后换下一个顾客
+	//需要设计一个菜单，然后设计一个顾客随机点菜的方法。
+
+	var res = (function(){
+         
+         let instance = null;
+         function Restaurant(obj){
+		  var obj = obj||{};
+          this.cash = obj.cash||'100000';
+          this.seats = obj.seats||1;
+          this.staff = obj.staff||[];
+          console.log("zzzz");
+	}
+
+	Restaurant.prototype = {
+		constructor:Restaurant,
+		getnewRes:function(){
+			console.log("这是一个餐厅，里面只有一个厨师，一个服务员，一个座位。");
+		},
+		hire:function(obj){
+           console.log("i wanted you "+obj.name);
+           this.staff.push(obj); 
+		},
+		fire:function(obj){
+           console.log("your fired  "+obj.name);
+           this.staff.pop(obj); 
+		},
+	};
+
+
+	return {
+		name:'Restaurant',
+        getnewRes:function(obj){
+        	if(instance===null){
+        		instance = new Restaurant(obj);
+        	}else{
+        		return instance;
+        	}
+
+        }
+       }
+
+	}
+
+)();
+
+res.getnewRes();
+
+
+</script>
+	
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>单例模式singleton</title>
+</head>
+<body>
+<script>
+	//this is a test of singleton;单身，单张，独子，
+
+// 单例模式的目标是实现一个构造函数（类）只有一个实例，即只实例化一个实例
+//实例实现思路：利用js的作用域，形成闭包，从而可以创建私有变量，然后将创建的实例赋予这个私有变量就可以了。
+//每当想创建这个类的实例的时候，先判断instance是否已经引用了存在的实例，如果没有引用，即这个类没有被创建实例，就要创建一个实例，然后赋予给他instance；如果instance已经引用，即已经存在了该类的实例，则无需创建，直接使用就可以了。
+
+
+
+var singletonAcceptr =(function(){
+
+	var instance = null;
+	//接收实例用
+	function SupposeClass(args){//添加属性,构造器模式
+           var args = args || {};
+           this.name = args.name || 'TOM';
+           this.age = args.age || 24;
+           console.log("class is created");
+	}
+	// 在原型链模式添加方法
+	// SupposeClass.prototype.getclass=function(){
+	// 这种写法的话只能够添加一种方法，不好，可以使用对象
+	// };
+
+	SupposeClass.prototype = {
+          constructor:SupposeClass,
+          getinstance:function(){
+          	console.log("name:"+this.name+"age:"+this.age);
+          }
+
+	};
+
+	return {
+		//返回一个对象，所谓单例模式，就是只返回一个实例对象
+		// 包括属性和方法
+
+		name:'SupposeClass',
+		getinstance:function(args){
+              if(instance === null){
+              	instance = new SupposeClass(args);
+              }
+              return instance;
+		},
+
+		}
+	}
+
+
+
+)();
+
+singletonAcceptr.getinstance();
+singletonAcceptr.getinstance();
+
+
+// 实例二：利用属性来判断是否已存在实例
+//js中类（function）也是对象，对其赋予一个属性instance，用来引用创建的实例，通过判断instance是否已引用创建的实例就可以了
+
+function SingletonTwo(args){
+
+    if(SingletonTwo.instance === 'object'){
+    	return SingletonTwo.instance;
+    }
+
+    this.name = args.name|| 'Too';
+    this.age = args.age|| 25;
+
+    SingletonTwo.instance = this;
+    console.log("two");
+};
+SingletonTwo.prototype = {
+       constructor:SingletonTwo,
+       dosomething:function(){
+       	  console.log('name:'+this.name+"age:"+this.age);
+       },
+};
+var ss = new SingletonTwo("",22);
+
+
+// 实例三
+
+// 在js中，this是引用的对象
+// new 1创建一个新的对象
+       // 2实例指向原型对象，this绑定到新的对象
+       // 3为对象添加属性和方法
+       // 4返回新的对象
+       // 利用this的属性，将this赋值给instance
+
+
+       function SingletonThree(args){
+           var instance = null;
+           this.name = args.name || 'TTTT';
+           this.age = args.age || 26;
+
+           instance = this;
+           console.log('three');
+           SingletonThree = function(){
+           	return instance;
+           };
+
+       };
+       SingletonThree.prototype = {
+       	constructor:SingletonThree,
+       	dosomething:function(){
+       		console.log('name: '+this.name+"age: "+this.age);
+       	}
+       }; 
+var sw = new SingletonThree('tott',24);
+var ssss = new SingletonThree("ds",22);
+
+</script>
+	
+</body>
+</html>

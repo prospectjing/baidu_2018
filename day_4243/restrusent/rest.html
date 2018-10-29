@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>44</title>
+</head>
+<body>
+
+<script>
+	// 新建一个餐厅
+
+	var res = function (obj){
+           var obj = obj||{};
+           this.cash = obj.cash||{}; 
+           this.seats = obj.seats||1;
+           this.staff = obj.staff||[];
+
+	}
+
+	res.prototype = {
+		fire:function(obj){
+           console.log("your not here "+obj.name);
+          this.staff.push(obj);
+		},
+		hire:function(obj){
+           console.log(obj.name+"your are wanted!!!");
+          this.staff.pop(obj);
+		}
+
+	};
+//餐厅
+
+// 还有一个服务员，一个厨师
+
+
+var cook = (function(){
+	var instance = null;//从来在后面承接实例
+     function Cook(obj){
+     	  var obj = obj||"{}";
+          this.name = obj.name||"cookwang";
+          this.cash = obj.cash||"5000";
+          console.log("test");
+     }
+
+     Cook.prototype = {
+     	constructor:Cook,
+     	cooking:function(obj){
+     		console.log("cook a dish of ");
+     	},
+     };
+return {
+	name:'Cook',
+	cooking:function(obj){
+		if(instance===null){
+			instance = new Cook(obj);
+		}
+		return instance;
+	}
+};
+
+
+})();
+
+cook.cooking();
+
+var waiter = (function(){
+         
+       var instance = null;
+       function Waiter(obj){
+          var obj = obj||{};
+          this.name = obj.name||'waiterli';
+          this.cash = obj.cash||'4000';
+
+          console.log('test waiter');
+       }
+
+
+       Waiter.prototype = {
+       	    constructor:Waiter,
+       	    waiting:function(obj){
+       	    	console.log("这事儿 ————————"+obj.name);
+       	    },
+       };
+ return {
+ 	name:'Waiter',
+ 	waiting:function(obj){
+ 		if(instance === null){
+ 			instance = new Waiter(obj);
+ 		}
+ 		return instance;
+ 	},
+ };
+
+
+})();
+
+waiter.waiting();
+
+
+</script>
+	
+</body>
+</html>
