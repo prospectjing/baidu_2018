@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>restaurant</title>
+</head>
+<body>
+<script type="text/javascript">
+	function Restaurant(obj){
+		//餐厅类
+		this.cash = obj.cash;
+		this.seats = obj.seats;
+		this.staff = obj.staff;
+		this.hire = function(obj){
+             console.log("we wanted staff named:" + obj.name);
+             this.staff.push(obj);
+		};
+		this.fire = function(obj){
+             console.log("your are not work here anymore!!! "+obj.name);
+             this.staff.pop(obj);
+		};
+	}
+
+	function Staff(name,wage){
+		// this.id = id;
+		this.name = name;
+		this.wage = wage;
+		this.action = function(){
+              console.log("do something!!!");
+		};
+	}
+
+	function Cook(name,wage){
+		Staff.call(this,name,wage);
+		this.action = function(){
+          console.log("cook something!!!");
+		};
+	}
+	Cook.prototype = Object.create(Staff.prototype);
+	Cook.prototype.constructor = Cook;
+
+
+//test
+
+
+   var restaurant1 = new Restaurant({
+   	cash:100000,
+   	seats:20,
+   	staff:[]
+   });
+
+   var newcook = new Cook('Tom',10000);
+   // restaurant1.hire(newcook);
+   
+   // console.log(restaurant1.staff);
+   restaurant1.fire(newcook);
+  
+   console.log(restaurant1.staff);
+</script>
+	
+</body>
+</html>

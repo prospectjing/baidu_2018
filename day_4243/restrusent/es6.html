@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>es6</title>
+</head>
+<body>
+
+
+
+<script type="text/javascript">
+     class Resturant{
+
+         constructor(obj){
+          
+            this.cash = obj.cash;
+            this.seats = obj.seats;
+            this.staff = obj.staff;
+         }
+
+         hire(obj){
+              console.log(obj.name + "you are wanted!!!");
+              this.staff.push(obj);
+         }
+
+         fire(obj){
+         	console.log(obj.name + "you are fired!!!");
+              this.staff.pop(obj);
+         }
+
+
+
+     }	
+
+
+     class Staff{
+     	constructor(name,cash){
+              this.name = name;
+              this.cash = cash;
+     	}
+
+     	dosomething(){
+     		console.log('i can do something!!!');
+     	}
+     }	
+
+
+     class Cook extends Staff{
+     	constructor(name,cash){
+             super(name,cash);
+
+     	}
+     	Cooking(){
+             console.log('i can cooking!!!');
+     	}
+     }
+
+     var restaurant11 = new Resturant({
+     	cash:100000,
+     	seats:20,
+        staff:[]
+
+     }); 
+     var newcook  = new Cook('Tim',1000);
+     restaurant11.hire(newcook);
+     console.log(restaurant11.staff);
+</script>
+	
+</body>
+</html>
