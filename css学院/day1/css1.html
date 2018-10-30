@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<style>
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    }
+	    #box{
+			width: 300px;
+			height: 300px;
+			margin: 0 auto;
+			position: relative;
+		}
+
+		#p{
+
+            width: 80px;
+			
+			position: absolute;
+			top:30px;
+			left:110px;
+            
+		}
+         
+
+		p{
+			  text-align: center;
+		      font-size: 16px;
+		     /* border-bottom: 1px solid red;*/
+		     transition: color .2s linear;
+			-webkit-transition: color 0.2s linear; 
+		     
+		}
+		#line{
+			
+			width: 0;
+			height:3px;
+			
+			background-color: skyblue;
+			transition: width 0.2s linear;
+			-webkit-transition: width 0.2s linear; 
+			margin: 0 auto;
+		}
+        
+		.line{
+            width: 80px !important;
+
+		}
+		.text{
+			color:skyblue;
+		}
+		button{
+             border-radius: 5px;
+             width: 80px;
+             height: 40px;
+             background-color: #fff;
+
+             position: absolute;
+             top: 100px;
+             left:110px;
+             outline: none;
+
+		}
+
+	</style>
+</head>
+<body>
+
+ <div id="box">
+ 	<div id="p">
+ 		<p class="">前端教程</p>
+        <div id="line"></div>
+ 	</div>
+ 	<button>点击按钮</button>
+ </div>
+<script type="text/javascript">
+	var btn  =  document.querySelector('button');
+    var pdiv = document.querySelector("#p");
+    var line = document.querySelector("#line");
+    //获取子节点的方式
+    //1.dom直接获取document.querySelector("#p").getElementByTagName('p');
+    //2.childNodes获取，document.querySelector("#p").childNodes;获取的是一个数组，包括文本空格等节点
+    //3.children获取,document.querySelector("#p").cildren[0];获取的是元素，也是一个数组
+    //4.firstChild获取,document.querySelector("#p").firstChild;子节点包括空格等节点
+    //4firstElementChild,
+
+    var p = pdiv.children[0];
+     var choose = false;
+	btn.addEventListener('click',function(){
+          // p.style.display = 'none';
+          // p.className = 'cls';
+          // p.setAttribute("class","cls");
+          // if(line.style.width = ''||line.style.width=='0px'){
+          // 	line.style.width = "100px";
+          // }else{
+          // 	line.style.width = "0";
+          // }
+
+          
+          if(choose === false){
+              line.classList.add('line');
+              p.classList.add('text');
+              choose = true;
+          }else{
+          	line.classList.remove('line');
+            p.classList.remove('text');
+            choose = false;
+          }
+	},false);
+</script>
+
+
+
+	
+</body>
+</html>

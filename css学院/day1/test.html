@@ -1,0 +1,64 @@
+<!-- 任务目的
+熟悉 CSS3 过渡子属性
+通过 JavaScript 触发过渡效果
+理解语义化，合理地使用 HTML 标签来构建页面 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>css3-1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .text-center{
+            text-align: center;
+        }
+        h1{
+            transition: color 0.2s linear;
+            -moz-transition: color 0.2s linear;    /* Firefox 4 */
+            -webkit-transition: color 0.2s linear;    /* Safari 和 Chrome */
+            -o-transition: color 0.2s linear;    /* Opera */
+        }
+        
+        span{
+            width: 0;
+            display: block;
+            border-bottom: 4px #1C86EE solid;
+            transition: width 0.5s;
+            margin: 0 auto;
+        }
+        .text{
+            color: #1C86EE;
+        }
+        
+        .underline{ 
+            width: 140px;
+        }
+        .btn{
+            background-color: white;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="text-center">
+            <h1 id="text">前端学院<span id="underline"></span></h1>
+            <button class="btn" onclick="changeStyle()">切换样式</button>
+    </div>
+    <script>
+        var change = false;
+        function changeStyle(){
+            if(change == false){
+                document.getElementById("underline").classList.add('underline');
+                document.getElementById("text").classList.add('text');
+                change = true;
+            }else{
+                document.getElementById("underline").classList.remove('underline');
+                document.getElementById("text").classList.remove('text');
+                change = false;
+            }
+        }
+    </script>
+</body>
+</html>
