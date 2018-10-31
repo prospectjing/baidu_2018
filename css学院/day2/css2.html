@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <style>
+        *{
+        	margin: 0;
+        	padding: 0;
+
+        }
+        div{
+        	text-align: center;
+        	float: left;
+        	background-color: #f7f6f6;
+        	width:60px;
+    		height:70px;
+    		line-height: 70px;
+    		margin:30px 30px; 
+    		border: 2px solid rgb(206, 206, 206);
+        }
+    	#box0{
+    		/*background-color: #f7f6f6;*/
+    		
+    		
+    	}
+    	#box1{
+    		transform: skewX(30deg);
+    		/*skew(30deg);*/
+    		-webkit-transform: skew(30deg);
+    		/*chrome,safari*/
+    		-o-transform:skew(30deg);
+    		/*opera*/
+    		-ms-transform:skew(30deg);
+            /*IE9*/
+            -moz-transform: skew(30deg);
+            /*firefox*/
+
+    	}
+    	#box2{
+    		transform:scale(0.5,1);
+    		/*IE9*/
+    		-ms-transform:scale(0.5,1);
+    		/*opera*/
+    		-o-transform:scale(0.5,1);
+    		/*firefox*/
+    		-moz-transform:scale(0.5,1);
+    		/*chrome safari*/
+    		-webkit-transform:scale(0.5,1);
+    	}
+    	#box3{
+            transform: rotate(45deg);
+            /*IE*/
+            -ms-transform:rotate(45deg);
+            /*opera*/
+            -o-transform:rotate(45deg);
+            /*firefox*/
+            -moz-transform:rotate(45deg);
+            /*chrome safari*/
+            -webkit-transform:rotate(45deg);
+    	}
+    	#box4{
+    		transform:translate(10px,20px);
+    		/*iE*/
+    		-ms-transform:translate(10px,20px);
+    		-o-transform:translate(10px,20px);
+    		-moz-transform:translate(10px,20px);
+    		-webkit-transform:translate(10px,20px);
+    	}
+    	#box5{
+    		/*transform: skew(30deg);
+    		transform: scale(0.5,1);
+    		transform: rotate(45deg);
+    		transform: translate(10px,20px);*/
+    		transform: skew(30deg) scale(0.5,1) rotate(45deg) translate(10px,20px);
+    	}
+    </style>
+</head>
+<body>
+<div id="box0">box0</div>
+<!-- 正方形的盒子 -->
+<div id="box1">box1</div>
+<!-- 向左倾斜30度的盒子 -->
+<div id="box2">box2</div>
+<!-- 压缩两倍的盒子 -->
+<div id="box3">box3</div>
+<!-- 旋转45度的盒子 -->
+<div id="box4">box4</div>
+<!-- x位移10px,y位移20px -->
+<div id="box5">box5</div>
+<!-- 加上以上所有的东西 -->
+
+
+<script type="text/javascript">
+	
+</script>
+	
+</body>
+</html>
