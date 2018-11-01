@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>一个炫酷的slider</title>
+	<style>
+		.showview{
+			/*width: 1024px;
+			height: 768px;*/
+			width: 800px;
+			height: 600px;
+			
+			position:relative;
+			margin: 0 auto;
+		}
+		
+		ul{
+			width:800px;
+			height:80px;
+			
+			list-style: none;
+			position: absolute;
+			bottom: 20px;
+			left:60px; 
+		}
+		li{
+			height:80px;
+			width: 100px;
+			
+			float: left;
+			margin-left: 10px;
+
+		}
+		li a{
+			height:80px;
+			width: 100px;
+			display: block;
+		}
+		li img{
+			height: 80px;
+			width: 100px;
+			
+
+		
+		}
+		.pic0{
+			animation: ones .5s ease-out 1;
+
+		}
+		@keyframes ones{
+		    0% {
+				margin-left: 1500px;
+			}
+			100% {
+	            margin-left: 0px;	
+ 			}
+		}
+		.pic1{
+			animation: two .5s ease-in 1;
+		}
+		@keyframes two{
+			from {
+                margin-top:-1000px;
+			}
+			to{
+                margin-top:0px;
+			}
+		}
+
+		.pic2{
+			animation: three 1s ease-in 1;
+
+		}
+		@keyframes three{
+			0% {
+				transform: scale(0.1);
+			}
+			100% {
+				transform: scale(1);
+			}
+		}
+
+		.pic3{
+            animation: four 1s ease-in 1;
+		}
+		@keyframes four{
+			0% {
+				transform: scale(2);
+			}
+			100% {
+				transform: scale(1);
+			}
+		}
+
+		.pic4{
+			animation: five 1s ease-in 1;
+		}
+		@keyframes five{
+			0% {
+				transform: rotate(360deg) scale(0.1);
+			}
+			100%{
+				transform: rotate(0deg) scale(1);
+			}
+		}
+		.pic5{
+			animation: six 1s linear 1;
+		}
+		@keyframes six{
+			0% {
+				transform:rotate(0deg) scale(2);
+			}
+			100%{
+				transform: rotate(360deg) scale(1);
+			}
+		}
+	</style>
+</head>
+<body>
+	<!-- 实现思路 -->
+	<!-- 点击每一个小图片显示大图片 -->
+	<div class="showview">
+		<img src="pic1.jpg" height="600" width="800" >
+		<!-- <img src="pic2.jpg" alt="pic2">
+		<img src="pic3.jpg" alt="pic3">
+		<img src="pic4.jpg" alt="pic4">
+		<img src="pic5.jpg" alt="pic5">
+		<img src="pic6.jpg" alt="pic6"> -->
+		
+	
+
+	
+		
+	
+		<ul>
+			<li><a href=javascript:;><img src="./pic1.jpg" alt="pic1"></a></li>
+			<li><a href=javascript:;><img src="./pic2.jpg" alt="pic2"></a></li>
+			<li><a href=javascript:;><img src="./pic3.jpg" alt="pic3"></a></li>
+			<li><a href=javascript:;><img src="./pic4.jpg" alt="pic4"></a></li>
+			<li><a href=javascript:;><img src="./pic5.jpg" alt="pic5"></a></li>
+			<li><a href=javascript:;><img src="./pic6.jpg" alt="pic6"></a></li>
+			
+		</ul>
+
+	</div>
+
+	<script type="text/javascript">
+		var btns = document.getElementsByTagName('li');
+		var showbox = document.getElementsByClassName('showview')[0];
+		for(let i = 0;i<btns.length;i++){
+			btns[i].addEventListener('click',function(e){
+                   if(e.target.nodeName.toLowerCase()=='img'){
+                        showbox.children[0].src = e.target.src;
+                        showbox.children[0].className = 'pic'+i;
+                   }
+			},false);
+		}
+	</script>
+</body>
+</html>

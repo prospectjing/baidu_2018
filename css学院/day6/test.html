@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <title>slider</title>
+    <style>
+        body {
+            margin: 0;
+            height: 900px;
+        }
+
+        .box_slider {
+            position: relative;
+            margin: 50px auto;
+            width: 500px;
+        }
+
+        .greatPic {
+            position: absolute;
+            width: 500px;
+            height: 300px;
+            background: url(images/sea.jpg) no-repeat center center;
+            background-size: cover;
+
+
+        }
+
+        /* 法一 */
+
+        .greatPic1 {
+            animation: greenTran .5s ease-out 1;
+        }
+
+        @keyframes greenTran {
+            0% {
+                left: -500px;
+            }
+            100% {
+                left: 0;
+            }
+        }
+
+        .greatPic2 {
+            animation: pic2Tran .5s ease-out 1;
+        }
+
+        @keyframes pic2Tran {
+            0% {
+                top: 350px;
+            }
+            100% {
+                top: 0;
+            }
+        }
+
+        .greatPic3 {
+            animation: pic3Scale 1s ease-in 1;
+        }
+
+        @keyframes pic3Scale {
+            0% {
+                transform: scale(0.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .greatPic4 {
+            animation: pic4Scale 1s ease-out 1;
+        }
+
+        @keyframes pic4Scale {
+            0% {
+                transform: scale(2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .greatPic5 {
+            animation: pic5Rot .7s ease-in-out 1;
+        }
+
+        @keyframes pic5Rot {
+            0% {
+                transform: rotate(0deg) scale(.1);
+            }
+            100% {
+                transform: rotate(360deg) scale(1);
+            }
+        }
+
+        .sliderPic {
+            position: absolute;
+            top: 300px;
+            overflow: hidden;
+            margin-top: 30px;
+            border: 1px solid pink;
+            width: 500px;
+            height: 60px;
+        }
+
+        .sliderPic [class ^='Pic'] {
+            float: left;
+            width: 100px;
+            height: 60px;
+            background: no-repeat center center;
+            background-size: cover;
+        }
+
+        .sliderPic .Pic1 {
+            background-image: url(images/green.jpg);
+        }
+
+        .sliderPic .Pic2 {
+            background-image: url(images/sea.jpg);
+        }
+
+        .sliderPic .Pic3 {
+            background-image: url(images/nature.jpg);
+        }
+
+        .sliderPic .Pic4 {
+            background-image: url(images/trave01.jpg);
+        }
+
+        .sliderPic .Pic5 {
+            background-image: url(images/work.jpg);
+        }
+
+        /* .Pic1:hover ~ .greatPic {
+            background-image: url(images/green.jpg);
+            animation: greenTran .5s ease-out 1;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="box_slider">
+
+        <div class="sliderPic" id="slide_pic">
+            <div class="Pic1" id="pic1"></div>
+            <div class="Pic2" id="pic2"></div>
+            <div class="Pic3" id="pic3"></div>
+            <div class="Pic4" id="pic4"></div>
+            <div class="Pic5" id="pic5"></div>
+            <div class="Pic6" id="pci6"></div>
+        </div>
+        <div class="greatPic" id="great_pic"></div>
+
+
+    </div>
+
+    <script>
+        for (var i = 1; i <= 5; i++) {
+            var picId = '#pic' + i;
+            $(picId).click(function () {
+                $('#great_pic').css('background-image', $(this).css('background-image'));
+            });
+        }
+        $('#pic1').click(function () {
+            $('#great_pic').addClass('greatPic1');
+
+            setTimeout(function () {
+                $('#great_pic').removeClass('greatPic1');
+            }, 1000);
+        });
+        $('#pic2').click(function () {
+
+            $('#great_pic').addClass('greatPic2');
+
+            setTimeout(function () {
+                $('#great_pic').removeClass('greatPic2');
+            }, 1000);
+        });
+
+        $('#pic3').click(function () {
+
+            $('#great_pic').addClass('greatPic3');
+
+            setTimeout(function () {
+                $('#great_pic').removeClass('greatPic3');
+            }, 1000);
+
+        });
+        $('#pic4').click(function () {
+
+            $('#great_pic').addClass('greatPic4');
+
+            setTimeout(function () {
+                $('#great_pic').removeClass('greatPic4');
+            }, 1000);
+
+        });
+        $('#pic5').click(function () {
+
+            $('#great_pic').addClass('greatPic5');
+
+            setTimeout(function () {
+                $('#great_pic').removeClass('greatPic5');
+            }, 1000);
+
+        });
+    </script>
+</body>
+
+</html>
