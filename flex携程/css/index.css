@@ -1,0 +1,87 @@
+*{
+	margin:0;
+	padding:0; 
+	box-sizing: border-box;
+}
+a{
+	text-decoration: none;
+}
+
+body{
+	font: normal 14px/1.5 Tahoma,"Lucida Grande",Verdana,"Microsoft Yahei",STXihei,hei;
+	color: #000;
+	min-width: 340px;
+	max-width: 540px;
+	margin: 0 auto;
+	background: #f2f2f2;
+}
+.w{
+	/*版心*/
+	
+}
+section{
+    height: auto;
+   display: flex; 
+   background-color: pink;
+   flex-direction: column;
+
+}
+.search{
+	height: 45px;
+
+}
+
+ul{
+	list-style: none;
+	height: 107px;
+}
+
+.slideul li img{
+     display: block;
+     height:100%;
+     width:100%;
+}
+.localnav{
+	height: 60px;
+	margin: 2px 4px;
+	background-color: #fff;
+}
+.localnav ul{
+	height: 100%;
+	display: flex;
+}
+.localnav ul li{
+	flex:1;
+
+    
+}
+.localnav li a{
+	display: flex;
+	display: block;
+	flex-direction: column;
+	justify-content: center;
+}
+.localnav [class^="icon-"]{
+	width: 32px;
+    height: 32px;
+	display: block;
+	background-image: url('../images/localnav.png'); 
+    background-repeat:no-repeat;
+    background-size: 32px auto;
+	
+}
+.localnav .icon-round{
+	background-position:0 -32px;
+}
+.localnav .icon-play{
+	background-position:0 0;
+}
+.localnav .icon-one{
+	background-position: 0 -64px;
+}
+.localnav .icon-two{
+	background-position: 0 -96px;
+}
+.localnav .icon-three{
+	background-position: 0 -128px;
+}

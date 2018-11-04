@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		
+			
+		
+		/*section{
+			width: 100%;
+			height:auto;
+			background-color: pink;
+            margin: 100px auto;
+            min-width: 340px;
+			max-width: 1560px;
+
+		}
+		div:nth-child(1){
+           height: 80px;
+           width: 33.3%;
+           background-color: green;
+           margin: 0 auto;
+           float: left;
+		}
+		div:nth-child(2){
+			height: 80px;
+           width: 33.3%;
+           background-color: blue;
+           margin: 0 auto;
+           float: left;
+		}
+		div:nth-child(3){
+			height: 80px;
+           width: 33.3%;
+           background-color: red;
+           margin: 0 auto;
+           float: left;
+		}*/
+
+		/*flex*/
+
+		section{
+			height: 80px;
+			background-color: pink;
+			display: flex;
+			/*flex-direction:column-reverse; */
+			/*flex-direction:row-reverse;*/
+			/*justify-content:space-between;*/
+			justify-content: flex-start;
+			align-items: flex-start;
+		}
+		li [class = 'ff']{
+			height: 100px;
+			flex: 1;
+			/*background-color: red;*/
+			margin-right: 10px;
+			background-image: url('../images/localnav.png');
+			background-position:center; 
+		}
+		div:nth-child(2){
+			height: auto;
+			flex: 1;
+			background-color: green;
+			margin-right: 10px;
+		}
+		div:last-child{
+			height: auto;
+			flex: 1;
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<section>
+		<div class="ff">1</div>
+		<div>2</div>
+		<div>3</div>
+	</section>
+	
+</body>
+</html>
