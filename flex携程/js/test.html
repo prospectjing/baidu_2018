@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" href="../../swiper-4.4.2/dist/css/swiper.min.css">
 	<style>
 		*{
 			margin:0;
@@ -54,12 +55,13 @@
 			justify-content: flex-start;
 			align-items: flex-start;
 		}
-		li [class = 'ff']{
+		 [class = 'ff']{
 			height: 100px;
 			flex: 1;
 			/*background-color: red;*/
 			margin-right: 10px;
-			background-image: url('../images/localnav.png');
+			background-image:url('../images/rummery.png');
+			/*background-image: url('../images/localnav.png');*/
 			background-position:center; 
 		}
 		div:nth-child(2){
@@ -73,14 +75,61 @@
 			flex: 1;
 			background-color: yellow;
 		}
+		.swiper-container{
+			 width: 600px;
+             height: 300px;
+		}
 	</style>
+	<script src="../../swiper-4.4.2/dist/js/swiper.min.js"></script>
 </head>
 <body>
 	<section>
 		<div class="ff">1</div>
 		<div>2</div>
 		<div>3</div>
+
+
 	</section>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">Slide 1</div>
+        <div class="swiper-slide">Slide 2</div>
+        <div class="swiper-slide">Slide 3</div>
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
+    
+    <!-- 如果需要导航按钮 -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    
+    <!-- 如果需要滚动条 -->
+    <div class="swiper-scrollbar"></div>
+</div>
+	
+<script type="text/javascript">
+	
+   var mySwiper = new Swiper ('.swiper-container', {
+    direction: 'horizontal', // 垂直切换选项
+    loop: true, // 循环模式选项
+    
+    // 如果需要分页器
+    pagination: {
+      el: '.swiper-pagination',
+    },
+    
+    // 如果需要前进后退按钮
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    
+    // 如果需要滚动条
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+  })        
+</script>
 	
 </body>
 </html>

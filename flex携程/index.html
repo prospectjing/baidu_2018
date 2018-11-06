@@ -4,6 +4,9 @@
 	<meta charset="UTF-8">
 	<title>携程网练习flex布局</title>
 	<link rel="stylesheet" type="text/css" href="./css/index.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+	<link rel="stylesheet" href="../swiper-4.4.2/dist/css/swiper.min.css">
+	<script src="../swiper-4.4.2/dist/js/swiper.min.js"></script>
 </head>
 <body>
 <!-- 分析页面可得 -->
@@ -13,6 +16,7 @@
 <!-- 3个div：90px -->
 <!-- ul :120px-->
 <!-- 特卖+活动 -->
+<!-- head  -->
 <!-- footer -->
 
 
@@ -21,13 +25,17 @@
 		<!-- 搜索框部分 -->
 		dsdsdsdddd
 	</div>
-	<div class="slide">
-		<ul class="slideul">
-			<li><a href="#"><img src="./images/lunbo1.jpg" alt="1"></a></li>
-
+	<div class="swiper-container">
+		<ul class="swiper-wrapper">
+			<li class="swiper-slide"><a href="#"><img src="./images/lunbo1.jpg" alt="1"></a></li>
+            <li class="swiper-slide"><a href="#"><img src="./images/scoll1.jpg" alt="2"></a></li>
+            <li class="swiper-slide"><a href="#"><img src="./images/scoll2.jpg" alt="3"></a></li>
+            <li class="swiper-slide"><a href="#"><img src="./images/scoll3.jpg" alt="4"></a></li>
+            <li class="swiper-slide"><a href="#"><img src="./images/scoll4.jpg" alt="5"></a></li>
+            <li class="swiper-slide"><a href="#"><img src="./images/scoll5.jpg" alt="6"></a></li>
 		    <!-- 多个li -->
-
 		</ul>
+		<div class="swiper-pagination"></div>
 	</div>
 
 	<div class="localnav">
@@ -65,10 +73,201 @@
 			
 		</ul>
 	</div>
+    <div class="table">
+    	<div class="rummery">
+    		<a href="#" class="first-column">
+    			<span>酒店</span>
+    		    <span class="rummery-table"></span>
+    		    
+    		</a>
+    		<div class="second-column">
+    			<a href="#">海外酒店</a>
+    			<a href="#">特价酒店</a>
+    		</div>
+    		<div class="third-column">
+    			<a href="#">团购</a>
+    			<a href="#">民宿·客栈</a>
+    		</div>
+    	</div>
+    	
+    	<div class="air-ticket">
+    		<a href="#" class="first-column">
+    		    <span>机票</span>
+    		    <span class="air-ticket-table"></span>
+    		   
+    		</a>
+    		<div class="second-column">
+    			<a href="#">火车票</a>
+    			<a href="#">特价机票</a>
+    		</div>
+    		<div class="third-column">
+    			<a href="#">汽车票·船票</a>
+    			<a href="#">专车·租车</a>
+    		</div>
+    	</div>
+    	<div class="tourist">
+    		<a href="#" class="first-column">
+    		    <span>机票</span>
+    		    <span class="tourist-table"></span>
+    		    
+    		</a>
+    		<div class="second-column">
+    			<a href="#">门票</a>
+    			<a href="#">目的地攻略</a>
+    		</div>
+    		<div class="third-column">
+    			<a href="#">游轮旅行</a>
+    			<a href="#">定制旅行</a>
+    		</div>
+    	</div>
+    </div>
 
+    <div class="convenient">
+    	<ul>
+    		<li>
+    			<a href="#">
+    				<span class="convenient-li-phone"></span>
+    				<span>WIFI电话卡</span>
+    			</a>
+
+    		</li>
+    		<li>
+    			<a href="#">
+    				<span class="convenient-li-secure"></span>
+    				<span>保险·签证</span>
+    			</a>
+    		</li>
+    		<li >
+    			<a href="#">
+    				<span class="convenient-li-money"></span>
+    				<span>外币兑换</span>
+    			</a>
+    		</li>
+    		<li >
+    			<a href="#">
+    				<span class="convenient-li-shopping"></span>
+    				<span>购物</span>
+    			</a>
+    		</li>
+    		<li >
+    			<a href="#">
+    				<span class="convenient-li-local"></span>
+    				<span>当地向导</span>
+    			</a>
+    		</li>
+    		<li >
+    			<a href="#">
+    				<span class="convenient-li-free-tourist"></span>
+    				<span>自有行</span>
+    			</a>
+    		</li>
+    		<li >
+    		    <a href="#">
+    		    	<span class="convenient-li-happy"></span>
+    				<span>境外玩乐</span>
+    			</a>
+    		</li>
+    		<li >
+    			<a href="#">
+    				<span class="convenient-li-present"></span>
+    				<span>礼品卡</span>
+    			</a>
+    		</li>
+    		<li>
+    			<a href="#">
+    				<span  class="convenient-li-credit"></span>
+    				<span>信用卡</span>
+    			</a>
+    		</li>
+    		<li>
+    			<a href="#">
+    				<span class="convenient-li-more"></span>
+    				<span>更多</span>
+    			</a>
+    		</li>
+    		
+    	</ul>
+    </div>
+    <div class="bargin">
+    	<div class="bargin-header">
+    		<h2 class="bargin-header-p"></h2>
+    		<a href="#">更多</a>
+    	</div>
+    	<div class="two-column">
+    		<div class="left-box">
+    			<div class="left-box-img">
+    				<img src="./images/sanya.jpg">
+    			</div>
+    		   
+    		   <p>三亚自由行(5钻)【销量明星款 约惠金秋】 高星价优4晚·甄选热门度假...</p>
+    		   <span>￥1913起</span>
+    	    </div>
+    	    <div class="right-box">
+    		     <div class="right-inner-one">
+    		     	<a href="#">
+    		     		<img src="./images/pic-tmh-02.png" width="54" alt="">
+    		     		<p>千款特价</p>
+    		     		<span>走过路过不错过</span> 
+    		     	</a>
+    		     </div>
+    		     <div class="right-inner-two">
+    		     	<div class="right-inner-two-left">
+    		     		<a href="#">
+    		     			<img src="./images/pic-tmh-03.png" width="50" alt="">
+    		     			<p>境外精选</p>
+    		     			<span>百元出境游</span>
+    		     		</a>
+    		     	</div>
+    		     	<div class="right-inner-two-right">
+    		     		<a href="#">
+    		     			<img src="./images/pic-tmh-04.png" width="50" alt="">
+    		     			<p>周边玩乐</p>
+    		     			<span>十元度周末</span>
+    		     		</a>
+    		     	</div>
+    		     </div>
+    	    </div>
+    	</div>
+    	
+    </div>
+    <!-- <div class="hot-active">
+    	<div class="active-header">
+    		<img src="" alt="">
+    		<i></i>
+    		<a href="#"><img src="" alt=""></a>
+    	</div>
+    	<div class="active-body">
+    		<div class="body-row">1</div>
+    		<div class="body-row">2</div>
+    		<div class="body-row">3</div>
+    	</div> -->
+
+    <div class="footer-bar">
+    	<a href="#" class="foot-phone">电话预定</a>
+    	<a href="#" class="foot-download">下载客户端</a>
+    	<a href="#" class="foot-mine">我的</a>
+    </div>
+    	
+    </div>
 </section>
 
 
-	
+<script type="text/javascript">
+		// 初始化
+		var swiper1 = new Swiper('.swiper-container',{
+			observer: true,//修改swiper自己或子元素时，自动初始化swiper
+            observeParents: true,//修改swiper的父元素时，自动初始化swiper
+			autoplay:{
+				delay: 3000,
+                stopOnLastSlide: false,
+                disableOnInteraction: false,
+			},//自动播放
+			loop:true,//循环播放
+            pagination: {
+            el: '.swiper-pagination',
+            clickable: true,     
+	        },
+		});
+	</script>
 </body>
 </html>
